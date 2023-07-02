@@ -1,0 +1,20 @@
+/**
+Programa1: Conocer si el numero es par o impar
+Alumno: Josue De Jesus Laveaga Valenzuela
+*/
+
+import Foundation
+
+func checkNumber() {
+    print("Ingresa un número:") // Solicita al usuario que ingrese un número
+    if let input = readLine(), let number = Int(input) {
+        // Lee la entrada del usuario como una cadena de texto y la intenta convertir a un número entero
+        let result = number % 2 == 0 ? "par" : "impar"
+        // Verifica si el número es divisible por 2 para determinar si es par o impar, y guarda el resultado en una variable
+        print("El número es \(result)") // Imprime el resultado por la consola
+    } else {
+        print("Entrada inválida. Ingresa un número válido.") // Si la entrada no es un número válido, muestra un mensaje de error
+    }
+}
+
+checkNumber() // Llama a la función checkNumber para iniciar la verificación del número
