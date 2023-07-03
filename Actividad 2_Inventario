@@ -1,0 +1,106 @@
+/**
+Programa 2: Inventario
+Alumno: Josue De Jesus Laveaga Valenzuela
+*/
+
+import Foundation
+
+// Estructura para representar un artículo
+struct Item {
+    var name: String
+    var quantity: Int
+}
+
+// Lista para almacenar los artículos registrados
+var itemList = [Item]()
+
+// Función para registrar un artículo
+func registerItem() {
+    print("Por favor escriba la cantidad de artículos que desea ingresar:")
+    
+    if let quantity = Int(readLine() ?? ""), quantity > 0 {
+        for i in 1...quantity {
+            print("\nArtículo \(i)")
+            
+            print("Ingrese el nombre del artículo:")
+            let name = readLine() ?? ""
+            
+            print("Ingrese la cantidad del artículo:")
+            if let quantity = Int(readLine() ?? "") {
+                let newItem = Item(name: name, quantity: quantity)
+                itemList.append(newItem)
+                print("Artículo registrado exitosamente.")
+            } else {
+                print("Cantidad inválida. El artículo no pudo ser registrado.")
+            }
+        }
+    } else {
+        print("Cantidad inválida. El artículo no pudo ser registrado.")
+    }
+}
+
+// Función para mostrar la lista de artículos
+func displayItemList() {
+    print("\nListado de productos\n")
+    
+    if itemList.isEmpty {
+        print("No hay artículos registrados.")
+    } else {
+        for (index, item) in itemList.enumerated() {
+            print("Artículo \(index + 1): \(item.name)")
+            print("Cantidad: \(item.quantity)")
+            print("------------------------")
+        }
+    }
+}
+
+// Función para consultar los artículos en existencia
+func checkStock() {
+    print("\nLos productos en existencia son los siguientes\n")
+    
+    if itemList.isEmpty {
+        print("No hay artículos registrados.")
+    } else {
+        for (index, item) in itemList.enumerated() {
+            print("Artículo \(index + 1): \(item.name)")
+            print("Cantidad: \(item.quantity)")
+            print("************************")
+        }
+    }
+}
+
+// Función principal del programa
+func main() {
+    var choice = 0
+    
+    while choice != 4 {
+        print("\nMENU")
+        print("1.- Registrar artículos")
+        print("2.- Ver lista de artículos")
+        print("3.- Consultar artículos en existencia")
+        print("4.- Salir")
+        print("\nElige una opción (número):")
+        
+        if let input = readLine(), let option = Int(input) {
+            choice = option
+            
+            switch choice {
+            case 1:
+                registerItem()
+            case 2:
+                displayItemList()
+            case 3:
+                checkStock()
+            case 4:
+                print("¡Hasta luego!")
+            default:
+                print("Opción inválida. Por favor, elige una opción válida.")
+            }
+        } else {
+            print("Entrada inválida. Por favor, elige una opción válida.")
+        }
+    }
+}
+
+// Llamada a la función principal
+main()
